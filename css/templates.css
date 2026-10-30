@@ -1,0 +1,99 @@
+/*
+ * Template personalities: frame styles and per-template token overrides.
+ * Token overrides here only affect full-color mode; .mode-sepia and
+ * .mode-ink (in design-system.css) are more specific and win.
+ */
+
+/* ================= Frames ================= */
+.poster .frame-western { border: calc(.45 * var(--u)) solid var(--frame); }
+.poster .frame-western::after { inset: calc(.55 * var(--u)); border: calc(.12 * var(--u)) solid var(--frame); }
+
+.poster .frame-candy { border-radius: calc(1.2 * var(--u)); }
+.poster .frame-candy::after { inset: calc(1.4 * var(--u)); border: calc(.14 * var(--u)) solid var(--o-stroke); border-radius: calc(.8 * var(--u)); }
+.poster .frame-candy .stripes { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+.poster .frame-teeth { border: calc(.5 * var(--u)) solid var(--accent-2); border-radius: calc(1.4 * var(--u)); }
+.poster .frame-teeth::after { inset: calc(.5 * var(--u)) calc(.6 * var(--u)) auto; height: calc(1.1 * var(--u));
+  background: linear-gradient(135deg, var(--accent-2) 50%, transparent 50%) 0 0 / calc(2.4 * var(--u)) calc(2.4 * var(--u)) repeat-x,
+              linear-gradient(225deg, var(--accent-2) 50%, transparent 50%) 0 0 / calc(2.4 * var(--u)) calc(2.4 * var(--u)) repeat-x;
+  filter: drop-shadow(0 calc(.08 * var(--u)) 0 var(--o-stroke)); }
+.poster .frame-teeth::before { content: ''; position: absolute; inset: auto calc(.6 * var(--u)) calc(.5 * var(--u)); height: calc(1.1 * var(--u));
+  background: linear-gradient(45deg, var(--accent-2) 50%, transparent 50%) 0 100% / calc(2.4 * var(--u)) calc(2.4 * var(--u)) repeat-x,
+              linear-gradient(-45deg, var(--accent-2) 50%, transparent 50%) 0 100% / calc(2.4 * var(--u)) calc(2.4 * var(--u)) repeat-x;
+  filter: drop-shadow(0 calc(-.08 * var(--u)) 0 var(--o-stroke)); }
+.poster.mode-ink .frame-teeth::before, .poster.mode-ink .frame-teeth::after { filter: drop-shadow(0 0 calc(.06 * var(--u)) #111); }
+
+.poster .frame-stitched { border: calc(.35 * var(--u)) solid var(--o-cookie-2); border-radius: calc(.8 * var(--u)); }
+.poster .frame-stitched::after { inset: calc(.5 * var(--u)); border: calc(.18 * var(--u)) dashed var(--o-cookie-2); border-radius: calc(.5 * var(--u)); }
+
+.poster .frame-kids-western { border: calc(.45 * var(--u)) solid var(--accent-2); border-radius: calc(1 * var(--u)); }
+.poster .frame-kids-western::after { inset: calc(.5 * var(--u)); border: calc(.14 * var(--u)) dashed var(--accent); border-radius: calc(.6 * var(--u)); }
+
+.poster .frame-saloon { border: calc(.9 * var(--u)) solid var(--accent-2); }
+.poster .frame-saloon::after { inset: calc(.3 * var(--u)); border: calc(.14 * var(--u)) solid var(--o-gold); outline: calc(.08 * var(--u)) solid var(--accent-2); outline-offset: calc(.25 * var(--u)); }
+
+.poster .frame-gothic { border: calc(.7 * var(--u)) double var(--frame); }
+.poster .frame-gothic::after { inset: calc(.55 * var(--u)); border: calc(.1 * var(--u)) solid var(--frame); }
+.poster .frame-gothic .fl { position: absolute; left: 50%; width: calc(16 * var(--u)); transform: translateX(-50%); }
+.poster .frame-gothic .fl.t { top: calc(-1.05 * var(--u)); background: var(--paper); padding: 0 calc(.6 * var(--u)); }
+.poster .frame-gothic .fl.b { bottom: calc(-1.05 * var(--u)); background: var(--paper); padding: 0 calc(.6 * var(--u)); }
+
+.poster .frame-bulletin { border: calc(.3 * var(--u)) solid var(--ink); }
+.poster .frame-bulletin::after { inset: calc(.4 * var(--u)); border: calc(.08 * var(--u)) solid var(--ink); }
+.poster .caution-corner { position: absolute; z-index: 4; width: calc(26 * var(--u)); height: calc(2.6 * var(--u));
+  background: repeating-linear-gradient(-45deg, var(--tape-a) 0 calc(1.1 * var(--u)), var(--tape-b) calc(1.1 * var(--u)) calc(2.2 * var(--u)));
+  border-top: calc(.1 * var(--u)) solid var(--tape-b); border-bottom: calc(.1 * var(--u)) solid var(--tape-b);
+  display: flex; align-items: center; justify-content: center; font-family: var(--f-head); font-size: 1em; letter-spacing: .25em; color: var(--tape-ink); }
+.poster .caution-corner span { background: var(--tape-text-bg); padding: 0 .6em; }
+.poster .caution-corner.bl { left: calc(-8.6 * var(--u)); bottom: calc(4.2 * var(--u)); transform: rotate(45deg); }
+.poster .caution-corner.br { right: calc(-8.6 * var(--u)); bottom: calc(4.2 * var(--u)); transform: rotate(-45deg); }
+.poster.mode-ink .caution-corner { background: repeating-linear-gradient(-45deg, #fff 0 calc(1 * var(--u)), #bbb calc(1 * var(--u)) calc(1.25 * var(--u))); }
+
+.poster .frame-ornate { border: calc(.3 * var(--u)) solid var(--frame); }
+.poster .frame-ornate::after { inset: calc(.7 * var(--u)); border: calc(.55 * var(--u)) double var(--frame); }
+.poster .frame-ornate .fc { width: calc(6 * var(--u)); }
+
+/* ================= Children ================= */
+.poster.tpl-candy-bandit { --frame: #6b3a7a; --headline: #d8641a; --subhead: #6b3a7a; --reward-ink: #6b3a7a; --tape-a: #e8a020; --tape-text-bg: #f6d77b; }
+.poster.tpl-candy-bandit .reward-label, .poster.tpl-little-monster .reward-label,
+.poster.tpl-cookie-criminal .reward-label, .poster.tpl-spooky-suspect .reward-label { font-family: var(--f-accent); letter-spacing: .08em; }
+
+.poster.tpl-little-monster { --paper: #e8dcae; --accent-2: #4f6a2a; --frame: #4f6a2a; --headline: #6f8a2e; --subhead: #7b4a8f; --reward-ink: #7b4a8f; --o-light: #f6f0dc; --tape-a: #9ab84a; --tape-b: #3a2f42; --tape-text-bg: #e6eec4; }
+.poster.tpl-little-monster .subhead { font-family: 'Bangers', var(--f-sub); letter-spacing: .08em; }
+
+.poster.tpl-cookie-criminal { --paper: #efdcb2; --frame: #6a3f1c; --accent: #a8401c; --headline: #7a4a22; --headline-shadow: #2b1a10; --headline-stroke: transparent; --subhead: #a8401c; --reward-ink: #7a4a22; --tape-a: #c88a3a; --tape-text-bg: #f1d9a8; }
+
+.poster.tpl-spooky-suspect { --paper: #ead7a6; --accent-2: #3e4a2a; --headline: #4a5a2a; --subhead: #c4561d; --reward-ink: #c4561d; --o-dark: #2a2f2a; }
+
+/* ================= Adults ================= */
+.poster.tpl-serial-snoozer .headline { letter-spacing: .06em; }
+.poster.tpl-serial-snoozer .subhead { font-family: var(--f-head); color: var(--accent); font-size: 3.4em; }
+
+.poster.tpl-booze-bandit { --paper: #e4c994; --accent-2: #5c1a1b; --frame: #5c1a1b; --headline: #5c1a1b; --subhead: #8a0303; --reward-ink: #5c1a1b; --stamp: #9a0a0a; --tape-a: #8a0303; --tape-b: #2b1a10; --tape-ink: #f2e2bf; --tape-text-bg: #5c1a1b; }
+.poster.tpl-booze-bandit .headline { font-family: 'Sancreek', var(--f-head); letter-spacing: .04em; }
+.poster.tpl-booze-bandit .name { font-family: var(--f-head); }
+
+.poster.tpl-party-phantom { --paper: #d8bf8a; --paper-2: #a8834a; --vignette: rgba(60, 30, 10, .7); --frame: #2b1d18; --headline: #241a17; --subhead: #5c1a1b; --reward-ink: #5c1a1b; --o-dark: #1a1414; --mottle-opacity: 1; --grain-opacity: .55; --tape-a: #3a2a22; --tape-b: #1a1414; --tape-ink: #e6d2a2; --tape-text-bg: #2b1d18; }
+.poster.tpl-party-phantom .subhead { font-family: 'Creepster', var(--f-sub); letter-spacing: .06em; font-size: 3.6em; }
+.poster.tpl-party-phantom .name { font-family: var(--f-news); font-weight: 700; letter-spacing: .06em; }
+.poster.tpl-party-phantom .crime-text { font-family: var(--f-news); font-style: italic; }
+.poster.mode-ink.tpl-party-phantom .warning span { color: #111; }
+
+.poster.tpl-midnight-menace .kicker { background: var(--ink); color: var(--paper); padding: .35em .6em; letter-spacing: .3em; }
+.poster.tpl-midnight-menace .kicker::before, .poster.tpl-midnight-menace .kicker::after { border-color: var(--paper); }
+.poster.mode-ink.tpl-midnight-menace .kicker { background: #fff; color: #111; border: calc(.15 * var(--u)) solid #111; }
+.poster.mode-ink.tpl-midnight-menace .kicker::before, .poster.mode-ink.tpl-midnight-menace .kicker::after { border-color: #111; }
+.poster.tpl-midnight-menace { --headline: #1d1a1a; --subhead: #8a0303; }
+.poster.tpl-midnight-menace .headline { font-family: var(--f-news); font-weight: 700; letter-spacing: .08em; }
+.poster.tpl-midnight-menace .subhead { font-family: var(--f-head); }
+
+/* ================= Special edition ================= */
+.poster.tpl-partners-in-crime { --headline: #4a2a12; --subhead: #8a0303; --headline-shadow: #c9a35a; }
+.poster.tpl-partners-in-crime .subhead, .poster.tpl-most-wanted-family .subhead { font-family: 'Sancreek', var(--f-sub); }
+.poster.tpl-most-wanted-family { --headline: #3a1f10; --headline-shadow: #b8872b; --subhead: #5c1a1b; }
+.poster.tpl-most-wanted-family .kicker { font-family: var(--f-head); font-weight: 400; font-size: 1.9em; letter-spacing: .12em; color: var(--accent-2); }
+.poster.theme-special .reward-label { font-size: 2.8em; }
+.poster.theme-special .reward.banner .amount { font-size: 4.2em; }
+.poster.tpl-most-wanted-family .footer { padding: 0 calc(6 * var(--u)); }
+.poster.tpl-little-monster .content { top: calc(4.4 * var(--u)); bottom: calc(4.3 * var(--u)); }
+.poster.mode-ink .frame-saloon { border-width: calc(.35 * var(--u)); }

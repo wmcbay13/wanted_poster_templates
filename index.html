@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wanted Poster Studio</title>
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/poster.css">
+<link rel="stylesheet" href="css/templates.css">
+<link rel="stylesheet" href="css/editor.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%E2%98%85%3C/text%3E%3C/svg%3E">
+<style id="page-size">@page { size: 8.5in 11in; margin: 0; }</style>
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">&#9733;</span>
+      <div>
+        <h1>Wanted Poster Studio</h1>
+        <p>The Haunted County Sheriff's Office &middot; Halloween edition</p>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="btn-pdf" class="primary" title="Opens the print dialog. Choose &quot;Save as PDF&quot; for a print-ready file.">Print / Save PDF</button>
+      <button id="btn-png" title="High-resolution PNG at 300 DPI">Download PNG (300 DPI)</button>
+      <button id="btn-print-all" title="Every guest, one poster per page">Print all guests</button>
+      <span class="sep"></span>
+      <button id="btn-save">Save guest list</button>
+      <label class="button">Load guest list<input id="file-load" type="file" accept="application/json,.json" hidden></label>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <!-- Left: guests -->
+    <aside class="panel guests-panel">
+      <div class="panel-head">
+        <h2>Guests</h2>
+        <button id="btn-add-guest" class="small">+ Add guest</button>
+      </div>
+      <ul id="guest-list" class="guest-list"></ul>
+      <p class="hint">Each guest gets their own poster. Drafts autosave in this browser.</p>
+    </aside>
+
+    <!-- Middle: form -->
+    <section class="panel form-panel" id="form">
+      <details open class="step">
+        <summary><span class="num">1</span> Choose a template</summary>
+        <div id="gallery" class="gallery"></div>
+      </details>
+
+      <details open class="step">
+        <summary><span class="num">2</span> Suspect details &amp; photo</summary>
+        <div id="suspects"></div>
+        <div id="suspect-count" class="row hidden">
+          <button id="btn-add-suspect" class="small">+ Add suspect</button>
+          <button id="btn-remove-suspect" class="small">&minus; Remove last suspect</button>
+        </div>
+      </details>
+
+      <details open class="step">
+        <summary><span class="num">3</span> Charges &amp; reward</summary>
+        <div class="grid2">
+          <label>Header line <span class="opt">optional</span>
+            <input data-field="kicker" list="dl-kickers" placeholder="The Haunted County Sheriff's Office">
+          </label>
+          <label>Poster headline
+            <input data-field="headline" list="dl-headlines" placeholder="[HEADLINE]">
+          </label>
+        </div>
+        <label id="subhead-wrap">Sub-headline <span class="opt">optional</span>
+          <input data-field="subhead" placeholder="The Candy Bandit">
+        </label>
+        <label id="family-wrap" class="hidden">Family name
+          <input data-field="familyName" placeholder="[FAMILY NAME]">
+        </label>
+        <label>Crime / accusation
+          <div class="combo"><textarea data-field="crime" rows="2" placeholder="[ENTER CRIME]"></textarea>
+          <select data-preset="crime" aria-label="Crime presets"></select></div>
+        </label>
+        <div class="grid2">
+          <label>Reward
+            <div class="combo"><input data-field="reward" placeholder="[ENTER REWARD]">
+            <select data-preset="reward" aria-label="Reward presets"></select></div>
+          </label>
+          <label>Reward note <span class="opt">optional</span>
+            <input data-field="rewardNote" placeholder="for both suspects">
+          </label>
+        </div>
+        <label>Warning
+          <div class="combo"><input data-field="warning" placeholder="[ENTER WARNING]">
+          <select data-preset="warning" aria-label="Warning presets"></select></div>
+        </label>
+        <label>Last seen <span class="opt">optional</span>
+          <div class="combo"><input data-field="lastSeen" placeholder="Near the candy bowl">
+          <select data-preset="lastSeen" aria-label="Last seen presets"></select></div>
+        </label>
+        <label>Footer <span class="opt">optional</span>
+          <div class="combo"><input data-field="footer" placeholder="Report Sightings to the Haunted Sheriff">
+          <select data-preset="footer" aria-label="Footer presets"></select></div>
+        </label>
+        <button id="btn-reset-text" class="small ghost">Reset text to template defaults</button>
+      </details>
+
+      <details class="step">
+        <summary><span class="num">4</span> Stamps &amp; extras</summary>
+        <div class="checks">
+          <label class="check"><input type="checkbox" data-enh="captured"> Red <b>CAPTURED</b> stamp</label>
+          <label class="check"><input type="checkbox" data-enh="escaped"> <b>ESCAPED</b> stamp</label>
+          <label class="check"><input type="checkbox" data-enh="doNotApproach"> <b>DO NOT APPROACH</b> stamp</label>
+          <label class="check"><input type="checkbox" data-enh="lastSeenLabel"> Highlighted <b>LAST SEEN</b> label</label>
+          <label class="check"><input type="checkbox" data-enh="caseNo"> Case number</label>
+          <label class="check"><input type="checkbox" data-enh="signature"> Sheriff's signature</label>
+          <label class="check"><input type="checkbox" data-enh="partyInfo"> Party date &amp; location</label>
+        </div>
+        <div class="grid2">
+          <label>Case number <input data-field="caseNo" placeholder="HC-1031-013"></label>
+          <label>Sheriff's name <input data-field="sheriff" placeholder="Sheriff Ichabod Graves"></label>
+          <label>Party date <input data-field="partyDate" placeholder="Oct 31, 7 PM"></label>
+          <label>Party location <input data-field="partyLocation" placeholder="13 Hollow Lane"></label>
+        </div>
+      </details>
+
+      <details open class="step">
+        <summary><span class="num">5</span> Print settings</summary>
+        <div class="grid2">
+          <label>Paper size
+            <select id="opt-size"></select>
+          </label>
+          <label>Color version
+            <select id="opt-mode"></select>
+          </label>
+        </div>
+        <div class="checks">
+          <label class="check"><input type="checkbox" id="opt-vintage" checked> Distressed vintage photo frame</label>
+          <label class="check"><input type="checkbox" id="opt-torn" checked> Torn paper corner (where the template has one)</label>
+          <label class="check"><input type="checkbox" id="opt-guides"> Show safe print margin (preview only)</label>
+        </div>
+      </details>
+    </section>
+
+    <!-- Right: preview -->
+    <section class="preview-panel">
+      <div class="preview-head">
+        <span id="preview-label"></span>
+        <span class="hint">Drag the photo to reposition &middot; scroll on it to zoom</span>
+      </div>
+      <div id="preview" class="preview"><div id="preview-scale"></div></div>
+    </section>
+  </main>
+</div>
+
+<div id="print-root" aria-hidden="true"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<datalist id="dl-kickers"></datalist>
+<datalist id="dl-headlines"></datalist>
+
+<template id="tpl-suspect">
+  <fieldset class="suspect-card">
+    <legend></legend>
+    <div class="grid2">
+      <label>Name <input data-s="name" placeholder="[INSERT GUEST NAME]"></label>
+      <label>Nickname / alias <span class="opt">optional</span><input data-s="alias" placeholder="Sticky Fingers"></label>
+    </div>
+    <div class="photo-tools">
+      <div class="photo-src">
+        <label class="button small">Upload photo<input type="file" accept="image/*" data-s="upload" hidden></label>
+        <button class="small ghost" data-s="clear">Use placeholder</button>
+      </div>
+      <div class="portraits" data-s="portraits" aria-label="Halloween icon portraits"></div>
+      <div class="sliders">
+        <label>Zoom <input type="range" min="1" max="3" step="0.05" data-s="zoom"></label>
+        <label>Left / right <input type="range" min="0" max="100" step="1" data-s="x"></label>
+        <label>Up / down <input type="range" min="0" max="100" step="1" data-s="y"></label>
+      </div>
+    </div>
+  </fieldset>
+</template>
+
+<script src="vendor/html-to-image.js"></script>
+<script src="js/ornaments.js"></script>
+<script src="js/portraits.js"></script>
+<script src="js/library.js"></script>
+<script src="js/templates.js"></script>
+<script src="js/render.js"></script>
+<script src="js/export.js"></script>
+<script src="js/editor.js"></script>
+</body>
+</html>

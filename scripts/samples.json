@@ -1,0 +1,105 @@
+{
+  "largeSizes": {
+    "tabloid": ["01-candy-bandit", "05-serial-snoozer", "09-partners-in-crime"],
+    "poster": ["04-spooky-suspect", "07-party-phantom", "10-most-wanted-family"]
+  },
+  "samples": [
+    {
+      "file": "01-candy-bandit",
+      "state": {
+        "template": "candy-bandit",
+        "fields": { "caseNo": "HC-1031-001", "partyDate": "Oct 31, 6 PM", "partyLocation": "13 Hollow Lane" },
+        "suspects": [{ "name": "Tommy Jenkins", "alias": "Sticky Fingers", "photo": { "kind": "portrait", "id": "pumpkin" } }],
+        "enh": { "lastSeenLabel": true }
+      }
+    },
+    {
+      "file": "02-little-monster",
+      "state": {
+        "template": "little-monster",
+        "suspects": [{ "name": "Maya Ortiz", "alias": "The Midnight Giggler", "photo": { "kind": "portrait", "id": "monster" } }],
+        "enh": { "escaped": false, "caseNo": true },
+        "fields": { "caseNo": "HC-1031-002" }
+      }
+    },
+    {
+      "file": "03-cookie-criminal",
+      "state": {
+        "template": "cookie-criminal",
+        "fields": { "caseNo": "No. 1031-C" },
+        "suspects": [{ "name": "Leo Park", "alias": "Crumbs", "photo": { "kind": "portrait", "id": "cat" } }],
+        "enh": { "captured": true }
+      }
+    },
+    {
+      "file": "04-spooky-suspect",
+      "state": {
+        "template": "spooky-suspect",
+        "suspects": [{ "name": "Ava Thompson", "alias": "Little Boo", "photo": { "kind": "portrait", "id": "ghost" } }],
+        "enh": { "partyInfo": true },
+        "fields": { "partyDate": "Oct 31", "partyLocation": "The Haunted Hall" }
+      }
+    },
+    {
+      "file": "05-serial-snoozer",
+      "state": {
+        "template": "serial-snoozer",
+        "fields": { "caseNo": "HC-1031-005", "sheriff": "Sheriff Ichabod Graves" },
+        "suspects": [{ "name": "Dave Robinson", "alias": "The Sandman", "photo": { "kind": "portrait", "id": "mummy" } }],
+        "enh": { "signature": true, "caseNo": true }
+      }
+    },
+    {
+      "file": "06-booze-bandit",
+      "state": {
+        "template": "booze-bandit",
+        "suspects": [{ "name": "Jess Whitaker", "alias": "Two-Fisted Jess", "photo": { "kind": "portrait", "id": "vampire" } }],
+        "enh": { "doNotApproach": false, "lastSeenLabel": true }
+      }
+    },
+    {
+      "file": "07-party-phantom",
+      "state": {
+        "template": "party-phantom",
+        "suspects": [{ "name": "Marcus Bell", "alias": "The Irish Exit", "photo": { "kind": "portrait", "id": "silhouette" } }],
+        "enh": { "signature": true },
+        "fields": { "sheriff": "Constable Mortimer Crypt" }
+      }
+    },
+    {
+      "file": "08-midnight-menace",
+      "state": {
+        "template": "midnight-menace",
+        "fields": { "caseNo": "HC-0000-12AM" },
+        "suspects": [{ "name": "Sam Delgado", "alias": "Last One Standing", "photo": { "kind": "portrait", "id": "werewolf" } }],
+        "enh": { "escaped": true, "caseNo": true }
+      }
+    },
+    {
+      "file": "09-partners-in-crime",
+      "state": {
+        "template": "partners-in-crime",
+        "fields": { "caseNo": "HC-1031-009", "partyDate": "Oct 31, 2026", "partyLocation": "Ravenwood Manor" },
+        "suspects": [
+          { "name": "Nora Vance", "alias": "The Brains", "photo": { "kind": "portrait", "id": "witch" } },
+          { "name": "Eli Vance", "alias": "The Getaway Broom", "photo": { "kind": "portrait", "id": "skeleton" } }
+        ],
+        "enh": { "signature": true, "partyInfo": true }
+      }
+    },
+    {
+      "file": "10-most-wanted-family",
+      "state": {
+        "template": "most-wanted-family",
+        "fields": { "familyName": "The Grimsworth Family", "caseNo": "HC-1031-010" },
+        "suspects": [
+          { "name": "Morticia", "alias": "Ringleader", "photo": { "kind": "portrait", "id": "witch" } },
+          { "name": "Gus", "alias": "The Muscle", "photo": { "kind": "portrait", "id": "monster" } },
+          { "name": "Pip", "alias": "Lookout", "photo": { "kind": "portrait", "id": "pumpkin" } },
+          { "name": "Wednesday", "alias": "Mastermind", "photo": { "kind": "portrait", "id": "cat" } }
+        ],
+        "enh": { "signature": true, "caseNo": true }
+      }
+    }
+  ]
+}

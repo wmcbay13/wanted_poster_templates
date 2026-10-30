@@ -1,0 +1,174 @@
+/*
+ * Haunted County design system — color + type tokens.
+ *
+ * Every poster color is a token. Templates override tokens for full-color
+ * printing; the .mode-sepia and .mode-ink classes (higher specificity) remap
+ * all of them, so one template prints correctly in all three modes.
+ */
+@import url('../vendor/fonts.css');
+
+.poster {
+  /* Paper */
+  --paper: #e9d6a8;
+  --paper-2: #d6b97f;        /* mottling / aged edges */
+  --scorch: #8a5222;         /* inner scorch halo */
+  --burn: #24120a;           /* charred edge */
+  --stain: rgba(112, 66, 20, .38);
+  --stain-fill: rgba(150, 96, 40, .08);
+  --grain: #3a240e;
+  --grain-opacity: .35;
+  --speck-opacity: .55;
+  --mottle-opacity: .5;
+  --burn-opacity: 1;
+  --crease-opacity: .35;
+  --vignette: rgba(110, 62, 20, .45);
+
+  /* Ink */
+  --ink: #2b2522;            /* faded black */
+  --ink-2: #5a4632;          /* sepia brown */
+  --ink-3: #7a654c;
+  --accent: #8a0303;         /* blood red */
+  --accent-2: #5c1a1b;       /* deep burgundy */
+  --accent-3: #c4561d;       /* burnt orange */
+  --olive: #5b5b2e;
+  --frame: var(--ink);
+  --headline: var(--ink);
+  --headline-shadow: transparent;
+  --headline-stroke: transparent;
+  --subhead: var(--accent);
+  --name: var(--ink);
+  --reward-bg: transparent;
+  --reward-ink: var(--accent);
+  --banner-bg: var(--accent-2);
+  --banner-ink: var(--paper);
+  --stamp: #8a0303;
+  --tape-a: #d9a521;
+  --tape-b: #1f1a17;
+  --tape-ink: #1f1a17;
+  --tape-text-bg: #e9c75a;
+  --photo-bg: #c9b48a;
+  --photo-mat: #f1e6cc;
+  --photo-filter: sepia(.25) contrast(1.05) saturate(.9);
+
+  /* Ornament palette */
+  --o-orange: #c4561d;
+  --o-orange-2: #8f3a10;
+  --o-yellow: #e2b33a;
+  --o-face: #2b1a10;
+  --o-green: #5b6b2e;
+  --o-purple: #5e3b62;
+  --o-light: #f1e8d2;
+  --o-bone: #ece0c2;
+  --o-dark: #1f1a17;
+  --o-red: #8a0303;
+  --o-gold: #b8872b;
+  --o-gold-2: #d4a64a;
+  --o-gray: #8b8578;
+  --o-gray-2: #5c574e;
+  --o-cookie: #b97a3c;
+  --o-cookie-2: #8a5524;
+  --o-choc: #3d2314;
+  --o-amber: #9b5a16;
+  --o-cork: #b08a5a;
+  --o-label: #efe2c0;
+  --o-glass: rgba(241, 232, 210, .55);
+  --o-metal: #6d6a66;
+  --o-moon: #f0dfa2;
+  --o-moon-2: #d8c27a;
+  --o-wax: #7a1418;
+  --o-wax-2: #8f1c20;
+  --o-wax-hi: #c24a44;
+  --o-tape: rgba(236, 226, 196, .75);
+  --o-web: rgba(43, 37, 34, .7);
+  --o-ink-2: var(--ink-2);
+  --o-frame: var(--frame);
+  --o-stroke: #2b1a10;
+  --o-sil-stroke: none;
+
+  /* Type */
+  --f-head: 'Rye', 'Georgia', serif;
+  --f-sub: 'Rye', 'Georgia', serif;
+  --f-name: 'Sancreek', 'Rye', serif;
+  --f-body: 'Special Elite', 'Courier New', monospace;
+  --f-news: 'Old Standard TT', 'Times New Roman', serif;
+  --f-accent: 'Rye', serif;
+  --f-sign: 'Mrs Saint Delafield', cursive;
+}
+
+/* ---------- Collections ---------- */
+.poster.theme-kids {
+  --paper: #f0dcaa;
+  --paper-2: #e2bf7c;
+  --accent: #c4561d;
+  --accent-2: #6b3a7a;
+  --accent-3: #6f8a2e;
+  --headline: #c4561d;
+  --headline-shadow: #3b2410;
+  --headline-stroke: #3b2410;
+  --subhead: #6b3a7a;
+  --o-orange: #e0701f;
+  --o-purple: #7b4a8f;
+  --o-green: #6f8a2e;
+  --o-dark: #2e2433;
+  --stamp: #b5361a;
+  --f-sub: 'Luckiest Guy', 'Rye', sans-serif;
+  --f-accent: 'Luckiest Guy', 'Rye', sans-serif;
+  --f-name: 'Rye', serif;
+  --grain-opacity: .25;
+  --speck-opacity: .4;
+  --burn-opacity: .8;
+  --photo-filter: saturate(.92) contrast(1.03);
+}
+
+.poster.theme-adults {
+  --paper: #e3cc98;
+  --paper-2: #c9a466;
+  --grain-opacity: .45;
+  --mottle-opacity: .65;
+  --crease-opacity: .45;
+}
+
+.poster.theme-special {
+  --paper: #e8d09c;
+  --paper-2: #cfa866;
+  --frame: #4a2a12;
+  --banner-bg: #5c1a1b;
+}
+
+/* ---------- Print modes ---------- */
+/* Doubled .poster raises specificity above template overrides in templates.css. */
+/* Sepia: a single brown ink ladder on cream paper. */
+.poster.poster.mode-sepia {
+  --paper: #ead9b4; --paper-2: #d4b886; --scorch: #7a4f26; --burn: #2e1a0c;
+  --ink: #3a2412; --ink-2: #63411f; --ink-3: #85633d;
+  --accent: #5a3214; --accent-2: #4a2a10; --accent-3: #7a5028; --olive: #6a5030;
+  --frame: #3a2412; --headline: #3a2412; --headline-shadow: #b08a5c; --headline-stroke: transparent;
+  --subhead: #63411f; --name: #3a2412; --reward-ink: #4a2a10; --banner-bg: #4a2a10; --banner-ink: #ead9b4;
+  --stamp: #6a3a18; --tape-a: #c9a46a; --tape-b: #3a2412; --tape-ink: #3a2412; --tape-text-bg: #e0c896;
+  --photo-bg: #b89a6c; --photo-mat: #efe2c4; --photo-filter: grayscale(1) sepia(.85) contrast(1.05);
+  --o-orange: #a8733e; --o-orange-2: #6a4422; --o-yellow: #d1ad72; --o-face: #3a2412; --o-green: #7a6440;
+  --o-purple: #6e4c32; --o-light: #f2e6cc; --o-bone: #ecdcb8; --o-dark: #3a2412; --o-red: #6a3418;
+  --o-gold: #b0844a; --o-gold-2: #c9a46a; --o-gray: #9a8466; --o-gray-2: #63411f; --o-cookie: #a8733e;
+  --o-cookie-2: #6a4422; --o-choc: #3a2412; --o-amber: #8a5a2a; --o-cork: #b0844a; --o-label: #f2e6cc;
+  --o-metal: #6a5642; --o-moon: #ecd9a8; --o-moon-2: #c9a46a; --o-wax: #5a3214; --o-wax-2: #6a3a18;
+  --o-wax-hi: #a8733e; --o-stroke: #3a2412; --o-web: rgba(58, 36, 18, .7);
+}
+
+/* Ink-saver: white paper, no tonal fills, outline art, gray photo. */
+.poster.poster.mode-ink {
+  --paper: #ffffff; --paper-2: #ffffff; --scorch: transparent; --burn: #444;
+  --stain: rgba(0, 0, 0, .18); --stain-fill: transparent; --vignette: transparent;
+  --grain-opacity: 0; --speck-opacity: .35; --mottle-opacity: 0; --burn-opacity: 0; --crease-opacity: 0;
+  --ink: #111; --ink-2: #333; --ink-3: #555;
+  --accent: #111; --accent-2: #111; --accent-3: #333; --olive: #333;
+  --frame: #111; --headline: #111; --headline-shadow: transparent; --headline-stroke: transparent;
+  --subhead: #111; --name: #111; --reward-bg: transparent; --reward-ink: #111; --banner-bg: #fff; --banner-ink: #111;
+  --stamp: #333; --tape-a: #fff; --tape-b: #888; --tape-ink: #111; --tape-text-bg: #fff;
+  --photo-bg: #fff; --photo-mat: #fff; --photo-filter: grayscale(1) contrast(1.1) brightness(1.08);
+  --o-orange: #fff; --o-orange-2: #555; --o-yellow: #fff; --o-face: #fff; --o-green: #fff; --o-purple: #fff;
+  --o-light: #fff; --o-bone: #fff; --o-dark: #fff; --o-red: #c8c8c8; --o-gold: #fff; --o-gold-2: #fff;
+  --o-gray: #fff; --o-gray-2: #444; --o-cookie: #fff; --o-cookie-2: #666; --o-choc: #999; --o-amber: #fff;
+  --o-cork: #fff; --o-label: #fff; --o-glass: #fff; --o-metal: #666; --o-moon: #fff; --o-moon-2: #ccc;
+  --o-wax: #fff; --o-wax-2: #fff; --o-wax-hi: #333; --o-tape: transparent; --o-web: rgba(0, 0, 0, .45);
+  --o-ink-2: #444; --o-stroke: #111; --o-sil-stroke: #111;
+}
