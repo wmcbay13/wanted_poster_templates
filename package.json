@@ -1,0 +1,16 @@
+{
+  "name": "halloween-wanted-posters",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Customizable vintage Halloween WANTED poster templates with print-ready exports",
+  "type": "module",
+  "scripts": {
+    "serve": "python3 -m http.server 8080",
+    "render": "node scripts/render.mjs",
+    "samples": "node scripts/render.mjs scripts/samples.json --samples"
+  },
+  "devDependencies": {
+    "html-to-image": "1.11.11",
+    "puppeteer-core": "23.11.1"
+  }
+}

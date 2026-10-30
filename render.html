@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poster Render</title>
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/poster.css">
+<link rel="stylesheet" href="css/templates.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  @page { margin: 0; }
+  #stage .poster { break-after: page; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script src="js/ornaments.js"></script>
+<script src="js/portraits.js"></script>
+<script src="js/library.js"></script>
+<script src="js/templates.js"></script>
+<script src="js/render.js"></script>
+<script>
+  // Headless entry point used by scripts/render.mjs. Also accepts ?state=<url-encoded JSON>.
+  window.renderState = async function (state) {
+    const stage = document.getElementById('stage');
+    stage.innerHTML = '';
+    const size = Templates.sizes[state.size] || Templates.sizes.letter;
+    let pageStyle = document.getElementById('page-size');
+    if (!pageStyle) { pageStyle = document.createElement('style'); pageStyle.id = 'page-size'; document.head.appendChild(pageStyle); }
+    pageStyle.textContent = `@page { size: ${size.w}in ${size.h}in; margin: 0; }`;
+    const el = PosterRenderer.render(state);
+    stage.appendChild(el);
+    await PosterRenderer.fit(el);
+    return { width: el.offsetWidth, height: el.offsetHeight };
+  };
+  const q = new URLSearchParams(location.search).get('state');
+  if (q) window.renderState(JSON.parse(q));
+</script>
+</body>
+</html>
