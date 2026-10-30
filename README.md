@@ -11,14 +11,18 @@ Ten vintage "WANTED" poster templates for a Halloween party, plus a browser stud
 | 3. The Cookie Criminal | 7. The Party Phantom | |
 | 4. The Spooky Suspect | 8. The Midnight Menace | |
 
+**Live studio:** <https://wmcbay13.github.io/wanted_poster_templates/>. Open it in any browser; nothing to install.
+
 ## Quick start
+
+To run the studio locally instead:
 
 ```bash
 npm install          # only needed for batch rendering (puppeteer-core)
 npm run serve        # then open http://localhost:8080
 ```
 
-You can open `index.html` straight from disk for editing and PDF printing. PNG export needs the local server, because browsers block file access from `file://` pages.
+You can also open `index.html` straight from disk for editing and PDF printing. PNG export needs http(s), meaning the live site or `npm run serve`, because browsers block file access from `file://` pages.
 
 ## Creating a poster
 
